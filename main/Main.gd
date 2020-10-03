@@ -14,6 +14,8 @@ func game_over():
 	
 	$HUD.show_game_over()
 	
+	get_tree().call_group("collectables", "queue_free")
+	
 func new_game():
 	score = 0
 	time_left = 10

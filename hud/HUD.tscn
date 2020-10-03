@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://fonts/font-packardantique/Packard Antique Regular.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://hud/start_button.png" type="Texture" id=2]
@@ -13,6 +13,12 @@ font_data = ExtResource( 1 )
 size = 64
 outline_size = 2
 font_data = ExtResource( 1 )
+
+[sub_resource type="InputEventAction" id=4]
+action = "ui_select"
+
+[sub_resource type="ShortCut" id=5]
+shortcut = SubResource( 4 )
 
 [sub_resource type="DynamicFont" id=3]
 size = 48
@@ -67,6 +73,7 @@ margin_left = -95.728
 margin_top = -172.849
 margin_right = 118.272
 margin_bottom = -76.8492
+shortcut = SubResource( 5 )
 texture_normal = ExtResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false
