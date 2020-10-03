@@ -49,6 +49,7 @@ Misc:
 ### Code
 - Organised with [GitHub](https://github.com/NatalieThurlby/ludumdare47), using issues, feature branches, and milestones
 - Aiming for CI with GitHub actions (not done yet)
+- To play html5 export, I use `python3 -m http.server` 
 
 ### Art
 For now I am:

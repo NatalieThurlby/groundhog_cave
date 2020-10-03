@@ -1,17 +1,20 @@
 extends Node
 
 export (PackedScene) var Collectable
-var time_left
+var time_left = 1
 var score
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	randomize()
-	new_game()
+	pass
 
 func game_over():
 	$AppleTimer.stop()
 	$GameTimer.stop()
+	
+	$HUD.show_game_over()
+	
+	get_tree().call_group("collectables", "queue_free")
 	
 func new_game():
 	score = 0
@@ -19,15 +22,15 @@ func new_game():
 	$Player.start($PlayerStart.position)
 	$StartTimer.start()
 	
+	$HUD.update_score(score)
+	$HUD.show_message("Get Ready")
+	
 func _on_GameTimer_timeout():
 	time_left -= 1
 
 func _process(delta):
-	if time_left > 0:
-		pass
-	if time_left <= 0:
+	if time_left < 0:
 		game_over()
-		print('game over')
 
 func _on_AppleTimer_timeout():
 	# choose random point on the path, and initiate apple there:
@@ -52,3 +55,6 @@ func _on_StartTimer_timeout():
 
 func _on_apple_eaten():
 	score += 1
+	$HUD.update_score(score)
+
+

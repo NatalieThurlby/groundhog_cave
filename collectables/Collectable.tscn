@@ -14,7 +14,9 @@ animations = [ {
 "speed": 5.0
 } ]
 
-[node name="Collectable" type="RigidBody2D"]
+[node name="Collectable" type="RigidBody2D" groups=[
+"collectables",
+]]
 position = Vector2( -0.222717, 0.668182 )
 gravity_scale = 2.0
 contacts_reported = 1

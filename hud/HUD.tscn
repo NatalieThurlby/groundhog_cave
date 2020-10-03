@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://fonts/font-packardantique/Packard Antique Regular.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://hud/start_button.png" type="Texture" id=2]
+[ext_resource path="res://hud/HUD.gd" type="Script" id=3]
 
 [sub_resource type="DynamicFont" id=1]
 size = 48
@@ -13,12 +14,19 @@ size = 64
 outline_size = 2
 font_data = ExtResource( 1 )
 
+[sub_resource type="InputEventAction" id=4]
+action = "ui_select"
+
+[sub_resource type="ShortCut" id=5]
+shortcut = SubResource( 4 )
+
 [sub_resource type="DynamicFont" id=3]
 size = 48
 outline_size = 1
 font_data = ExtResource( 1 )
 
 [node name="HUD" type="CanvasLayer"]
+script = ExtResource( 3 )
 
 [node name="ScoreLabel" type="Label" parent="."]
 anchor_left = -0.00069052
@@ -65,6 +73,7 @@ margin_left = -95.728
 margin_top = -172.849
 margin_right = 118.272
 margin_bottom = -76.8492
+shortcut = SubResource( 5 )
 texture_normal = ExtResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -84,3 +93,7 @@ __meta__ = {
 }
 
 [node name="MessageTimer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+[connection signal="pressed" from="StartButton" to="." method="_on_StartButton_pressed"]
+[connection signal="timeout" from="MessageTimer" to="." method="_on_MessageTimer_timeout"]
