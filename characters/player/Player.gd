@@ -12,7 +12,7 @@ const WOBBLE_AMP_V = 3 # vertical wobble amplitude
 # Called when node first enters the scene tree:
 func _ready():
 	screen_size = get_viewport_rect().size
-	#hide()
+	hide()
 
 # Called every frame:
 func _process(delta):  # delta = delta time
