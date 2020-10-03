@@ -1,0 +1,39 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://main/PlayerStart.gd" type="Script" id=1]
+[ext_resource path="res://main/Main.gd" type="Script" id=2]
+[ext_resource path="res://characters/player/Player.tscn" type="PackedScene" id=3]
+[ext_resource path="res://collectables/Collectable.tscn" type="PackedScene" id=4]
+
+[sub_resource type="Curve2D" id=1]
+_data = {
+"points": PoolVector2Array( 0, 0, 0, 0, 1024, 0, 0, 0, 0, 0, 1024, 608, 0, 0, 0, 0, 0, 608, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1024, 0 )
+}
+
+[node name="Main" type="Node"]
+script = ExtResource( 2 )
+Collectable = ExtResource( 4 )
+
+[node name="Player" parent="." instance=ExtResource( 3 )]
+
+[node name="StartTimer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+
+[node name="AppleTimer" type="Timer" parent="."]
+wait_time = 0.5
+
+[node name="GameTimer" type="Timer" parent="."]
+
+[node name="PlayerStart" type="Position2D" parent="."]
+script = ExtResource( 1 )
+
+[node name="AppleSpawnPath" type="Path2D" parent="."]
+curve = SubResource( 1 )
+
+[node name="AppleSpawnLoc" type="PathFollow2D" parent="AppleSpawnPath"]
+position = Vector2( 1024, 0 )
+rotation = 1.57081
+[connection signal="timeout" from="StartTimer" to="." method="_on_StartTimer_timeout"]
+[connection signal="timeout" from="AppleTimer" to="." method="_on_AppleTimer_timeout"]
+[connection signal="timeout" from="GameTimer" to="." method="_on_GameTimer_timeout"]
