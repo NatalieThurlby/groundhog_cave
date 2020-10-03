@@ -24,7 +24,7 @@ func _on_GameTimer_timeout():
 
 func _process(delta):
 	if time_left > 0:
-		print(score)
+		pass
 	if time_left <= 0:
 		game_over()
 		print('game over')
