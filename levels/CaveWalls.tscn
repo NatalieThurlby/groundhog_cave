@@ -14,7 +14,7 @@ collision_mask = 2147483657
 physics_material_override = SubResource( 1 )
 script = ExtResource( 2 )
 
-[node name="Sprite" type="Sprite" parent="."]
+[node name="WallSprite" type="Sprite" parent="."]
 position = Vector2( 518, 1496 )
 texture = ExtResource( 1 )
 
@@ -29,3 +29,6 @@ polygon = PoolVector2Array( 512, 1500, 424, 1500, 432.3, 1443, 433.7, 1443, 460.
 [node name="BlobWall" type="CollisionPolygon2D" parent="."]
 position = Vector2( 518, 1496 )
 polygon = PoolVector2Array( 71, 550, 76.6, 554, 85.7, 554, 97.6, 549, 114, 549, 114, 550.7, 144, 563.7, 144, 565.3, 159, 583.3, 159, 588.7, 167, 607.6, 167, 619, 165.8, 619, 162.8, 643, 161.4, 643, 158.4, 651, 157, 651, 128, 688.7, 128, 691.5, 120.2, 707, 118.9, 707, 94.9, 735, 92.4, 735, 81.4, 740, 61, 740, 61, 738.5, 36, 732.6, 36, 731.1, 30, 727.1, 30, 724.8, 9, 698.7, 9, 696.5, -12.1, 659, -12.9, 659, -23, 647.8, -23, 645, -24, 615, -22.5, 615, -19.6, 603, -17.9, 603, -2.89999, 585, -0.600006, 585, 17.4, 573, 20.9, 573, 27, 571.5, 37, 557, 40.2, 557, 48, 558.5, 59, 550, 59, 548, 71, 548 )
+
+[node name="VisibilityNotifier2D" type="VisibilityNotifier2D" parent="."]
+[connection signal="viewport_exited" from="VisibilityNotifier2D" to="." method="_on_VisibilityNotifier2D_viewport_exited"]

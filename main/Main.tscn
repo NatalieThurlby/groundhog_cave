@@ -15,6 +15,7 @@ _data = {
 [node name="Main" type="Node"]
 script = ExtResource( 2 )
 Collectable = ExtResource( 4 )
+CaveWalls = ExtResource( 6 )
 
 [node name="ColorRect" type="ColorRect" parent="."]
 anchor_right = 1.0
@@ -23,9 +24,6 @@ color = Color( 0.345098, 0.337255, 0.52549, 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
-
-[node name="CaveWalls" parent="." instance=ExtResource( 6 )]
-constant_linear_velocity = Vector2( 5, 0 )
 
 [node name="Player" parent="." instance=ExtResource( 3 )]
 collision_mask = 15
