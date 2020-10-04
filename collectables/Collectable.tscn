@@ -18,6 +18,7 @@ animations = [ {
 "collectables",
 ]]
 position = Vector2( -0.222717, 0.668182 )
+collision_layer = 2
 gravity_scale = 2.0
 contacts_reported = 1
 contact_monitor = true

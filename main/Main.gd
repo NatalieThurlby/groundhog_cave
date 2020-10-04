@@ -25,6 +25,8 @@ func new_game():
 	$HUD.update_score(score)
 	$HUD.show_message("Get Ready")
 	
+	$CaveWalls.show()
+	
 func _on_GameTimer_timeout():
 	time_left -= 1
 
