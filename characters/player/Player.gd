@@ -3,6 +3,8 @@ extends KinematicBody2D
 # Member variables:
 var velocity = Vector2()  
 
+signal off_screen
+
 export var speed = 500  # pixels/sec
 var acceleration = 0.75
 var air_resistance = 0.2
@@ -70,3 +72,7 @@ func start(pos):
 func _on_BounceTimer_timeout():
 	bounce = false
 	$BounceTimer.stop()
+
+
+func _on_VisibilityNotifier2D_viewport_exited(viewport):
+	emit_signal("off_screen")

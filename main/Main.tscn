@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://main/PlayerStart.gd" type="Script" id=1]
 [ext_resource path="res://main/Main.gd" type="Script" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://collectables/Collectable.tscn" type="PackedScene" id=4]
 [ext_resource path="res://hud/HUD.tscn" type="PackedScene" id=5]
 [ext_resource path="res://levels/CaveWalls.tscn" type="PackedScene" id=6]
+[ext_resource path="res://how_to/HowTo.tscn" type="PackedScene" id=7]
 
 [sub_resource type="Curve2D" id=1]
 _data = {
@@ -48,6 +49,9 @@ position = Vector2( 1024, 0 )
 rotation = 1.57081
 
 [node name="HUD" parent="." instance=ExtResource( 5 )]
+
+[node name="HowTo" parent="." instance=ExtResource( 7 )]
+[connection signal="off_screen" from="Player" to="." method="_on_Player_off_screen"]
 [connection signal="timeout" from="StartTimer" to="." method="_on_StartTimer_timeout"]
 [connection signal="timeout" from="AppleTimer" to="." method="_on_AppleTimer_timeout"]
 [connection signal="timeout" from="GameTimer" to="." method="_on_GameTimer_timeout"]
