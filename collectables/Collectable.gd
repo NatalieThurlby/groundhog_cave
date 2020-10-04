@@ -14,7 +14,7 @@ func _process(delta):
 	rotation_speed = 2
 	$AnimatedSprite.rotation += -rotation_speed*PI*delta
 
-func _on_VisibilityNotifier2D_viewport_exited(viewport):
+func _on_VisibilityNotifier2D_viewport_exited(_viewport):
 	queue_free()
 
 func _on_Collectable_body_entered(body):

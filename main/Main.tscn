@@ -1,10 +1,12 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://main/PlayerStart.gd" type="Script" id=1]
 [ext_resource path="res://main/Main.gd" type="Script" id=2]
 [ext_resource path="res://characters/player/Player.tscn" type="PackedScene" id=3]
 [ext_resource path="res://collectables/Collectable.tscn" type="PackedScene" id=4]
 [ext_resource path="res://hud/HUD.tscn" type="PackedScene" id=5]
+[ext_resource path="res://levels/CaveWalls.tscn" type="PackedScene" id=6]
+[ext_resource path="res://how_to/HowTo.tscn" type="PackedScene" id=7]
 
 [sub_resource type="Curve2D" id=1]
 _data = {
@@ -14,6 +16,7 @@ _data = {
 [node name="Main" type="Node"]
 script = ExtResource( 2 )
 Collectable = ExtResource( 4 )
+CaveWalls = ExtResource( 6 )
 
 [node name="ColorRect" type="ColorRect" parent="."]
 anchor_right = 1.0
@@ -24,6 +27,7 @@ __meta__ = {
 }
 
 [node name="Player" parent="." instance=ExtResource( 3 )]
+collision_mask = 15
 
 [node name="StartTimer" type="Timer" parent="."]
 wait_time = 2.0
@@ -45,6 +49,9 @@ position = Vector2( 1024, 0 )
 rotation = 1.57081
 
 [node name="HUD" parent="." instance=ExtResource( 5 )]
+
+[node name="HowTo" parent="." instance=ExtResource( 7 )]
+[connection signal="off_screen" from="Player" to="." method="_on_Player_off_screen"]
 [connection signal="timeout" from="StartTimer" to="." method="_on_StartTimer_timeout"]
 [connection signal="timeout" from="AppleTimer" to="." method="_on_AppleTimer_timeout"]
 [connection signal="timeout" from="GameTimer" to="." method="_on_GameTimer_timeout"]

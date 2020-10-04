@@ -1,8 +1,15 @@
 extends Node
 
 export (PackedScene) var Collectable
+export (PackedScene) var CaveWalls
+
 var time_left = 1
 var score
+
+var current_wall
+var walls_1
+var walls_2
+var buffer = 5 # pixels (overlap between walls_1 and walls_2)
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -16,6 +23,25 @@ func game_over():
 	
 	get_tree().call_group("collectables", "queue_free")
 	
+func cave_walls_1(first=false):
+	walls_1 = CaveWalls.instance()
+	add_child(walls_1)
+	if not first:
+		walls_1.position.y += (walls_1.screen_size.y + walls_1.buffer-buffer)
+	walls_1.show()
+	walls_1.hidden = false
+	walls_1.connect("loop_cave", self, "_on_loop_cave")
+	current_wall = 1
+	
+func cave_walls_2():
+	walls_2 = CaveWalls.instance()
+	add_child(walls_2)
+	walls_2.position.y += (walls_2.screen_size.y + walls_2.buffer-buffer)
+	walls_2.show()
+	walls_2.hidden = false
+	walls_2.connect("loop_cave", self, "_on_loop_cave")
+	current_wall = 2
+	
 func new_game():
 	score = 0
 	time_left = 10
@@ -25,10 +51,18 @@ func new_game():
 	$HUD.update_score(score)
 	$HUD.show_message("Get Ready")
 	
+	cave_walls_1(true)
+
+func _on_loop_cave():
+	if current_wall == 1:
+		cave_walls_2()
+	elif current_wall == 2:
+		cave_walls_1()
+	
 func _on_GameTimer_timeout():
 	time_left -= 1
 
-func _process(delta):
+func _process(_delta):
 	if time_left < 0:
 		game_over()
 
@@ -57,4 +91,5 @@ func _on_apple_eaten():
 	score += 1
 	$HUD.update_score(score)
 
-
+func _on_Player_off_screen():
+	game_over()
