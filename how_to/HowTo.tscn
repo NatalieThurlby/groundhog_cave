@@ -1,0 +1,167 @@
+[gd_scene load_steps=18 format=2]
+
+[ext_resource path="res://characters/player/falling_2.png" type="Texture" id=1]
+[ext_resource path="res://characters/player/falling_1.png" type="Texture" id=2]
+[ext_resource path="res://baddies/spider_1/spider1_wiggle2.png" type="Texture" id=3]
+[ext_resource path="res://baddies/spider_1/spider1_wiggle.png" type="Texture" id=4]
+[ext_resource path="res://how_to/HowTo.gd" type="Script" id=5]
+[ext_resource path="res://how_to/arrow.png" type="Texture" id=6]
+[ext_resource path="res://fonts/font-packardantique/Packard Antique Regular.ttf" type="DynamicFontData" id=7]
+[ext_resource path="res://how_to/gems.png" type="Texture" id=8]
+
+[sub_resource type="DynamicFontData" id=1]
+font_path = "res://fonts/font-packardantique/Packard Antique Regular.ttf"
+
+[sub_resource type="DynamicFont" id=2]
+size = 48
+outline_size = 2
+font_data = SubResource( 1 )
+
+[sub_resource type="DynamicFontData" id=3]
+font_path = "res://fonts/font-packardantique/Packard Antique Regular.ttf"
+
+[sub_resource type="DynamicFont" id=4]
+size = 64
+outline_size = 2
+font_data = SubResource( 3 )
+
+[sub_resource type="DynamicFontData" id=5]
+font_path = "res://fonts/font-packardantique/Packard Antique Regular.ttf"
+
+[sub_resource type="DynamicFont" id=6]
+size = 48
+outline_size = 2
+font_data = SubResource( 5 )
+
+[sub_resource type="SpriteFrames" id=7]
+animations = [ {
+"frames": [ ExtResource( 2 ), ExtResource( 1 ) ],
+"loop": true,
+"name": "fall",
+"speed": 5.0
+} ]
+
+[sub_resource type="SpriteFrames" id=8]
+animations = [ {
+"frames": [ ExtResource( 3 ), ExtResource( 4 ) ],
+"loop": true,
+"name": "wiggle",
+"speed": 5.0
+} ]
+
+[sub_resource type="DynamicFont" id=9]
+size = 80
+outline_size = 2
+font_data = ExtResource( 7 )
+
+[node name="HowTo" type="CanvasLayer"]
+pause_mode = 2
+script = ExtResource( 5 )
+
+[node name="HowToControl" type="Control" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HowToBg" type="ColorRect" parent="HowToControl"]
+margin_top = 1.00002
+margin_right = 1042.0
+margin_bottom = 612.0
+color = Color( 0.345098, 0.337255, 0.52549, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ArrowKeys" type="Label" parent="HowToControl"]
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_left = 9.0
+margin_top = 110.0
+margin_right = 980.0
+margin_bottom = 178.0
+rect_scale = Vector2( 1.00139, 0.99545 )
+custom_fonts/font = SubResource( 2 )
+custom_colors/font_color = Color( 0.537255, 0.294118, 0.501961, 1 )
+custom_colors/font_outline_modulate = Color( 0.321569, 0.184314, 0.439216, 1 )
+text = "Use the left and right arrow keys to:"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Instructions" type="Label" parent="HowToControl"]
+margin_left = 417.0
+margin_top = 220.0
+margin_right = 975.0
+margin_bottom = 503.0
+custom_fonts/font = SubResource( 4 )
+custom_colors/font_color = Color( 0.537255, 0.294118, 0.501961, 1 )
+custom_colors/font_outline_modulate = Color( 0.321569, 0.184314, 0.439216, 1 )
+text = "Stay in view
+Collect the gems
+Avoid the spiders"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="EscapeTheLoop" type="Label" parent="HowToControl"]
+margin_left = 1.0
+margin_top = 509.0
+margin_right = 1031.0
+margin_bottom = 577.0
+custom_fonts/font = SubResource( 6 )
+custom_colors/font_color = Color( 0.537255, 0.294118, 0.501961, 1 )
+custom_colors/font_outline_modulate = Color( 0.321569, 0.184314, 0.439216, 1 )
+text = "...and escape the loop!"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Groundhog" type="AnimatedSprite" parent="HowToControl"]
+position = Vector2( 291.864, 264.145 )
+scale = Vector2( 0.608498, 0.634434 )
+frames = SubResource( 7 )
+animation = "fall"
+frame = 1
+playing = true
+
+[node name="Spider" type="AnimatedSprite" parent="HowToControl"]
+position = Vector2( 320.466, 464.808 )
+scale = Vector2( 0.796272, 0.810823 )
+frames = SubResource( 8 )
+animation = "wiggle"
+playing = true
+
+[node name="ArrowLeft" type="Sprite" parent="HowToControl"]
+position = Vector2( 368.926, 272.482 )
+scale = Vector2( 0.7, 0.7 )
+texture = ExtResource( 6 )
+
+[node name="ArrowRight" type="Sprite" parent="HowToControl"]
+position = Vector2( 203.994, 269.698 )
+rotation = -3.05433
+scale = Vector2( 0.7, 0.7 )
+texture = ExtResource( 6 )
+
+[node name="gems" type="Sprite" parent="HowToControl"]
+position = Vector2( 268.613, 368.938 )
+scale = Vector2( 1.28292, 1.12902 )
+texture = ExtResource( 8 )
+
+[node name="Title" type="Label" parent="HowToControl"]
+margin_left = 123.904
+margin_top = 21.2671
+margin_right = 977.904
+margin_bottom = 134.267
+custom_fonts/font = SubResource( 9 )
+custom_colors/font_color = Color( 0.537255, 0.294118, 0.501961, 1 )
+custom_colors/font_outline_modulate = Color( 0.321569, 0.184314, 0.439216, 1 )
+text = "Groundhog Cave"
+uppercase = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
